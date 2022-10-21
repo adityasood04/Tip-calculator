@@ -98,7 +98,7 @@ fun textFieldAndOutput(){
             keyboardOptions = KeyboardOptions(keyboardType =KeyboardType.Number),
             keyboardActions = KeyboardActions(onDone = {focusManager.clearFocus()})
         )
-
+        roundUpRow(checked = roundUp, onCheckedChange ={ roundUp = it } )
         Button(onClick = {
             if (!roundUp) {
                 var mResult =
@@ -121,7 +121,14 @@ fun textFieldAndOutput(){
     }
 
 }
-
+@Composable
+fun roundUpRow(checked:Boolean,onCheckedChange:(Boolean)->Unit){
+    Row(modifier = Modifier.fillMaxWidth().padding(10.dp), horizontalArrangement = Arrangement.SpaceBetween) {
+        Text(text = "Round up tip", modifier = Modifier.padding(0.dp,10.dp,0.dp,0.dp))
+        Switch(checked = checked, onCheckedChange = onCheckedChange,
+            )
+    }
+}
 
 @Preview(showBackground = true)
 @Composable
